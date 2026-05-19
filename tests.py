@@ -29,6 +29,10 @@ class TestCase(unittest.TestCase):
         """Test for a valid negative little endian input"""
         self.assertEqual(conv_endian(-954786, 'little'), '-A2 91 0E')
 
+    def test_DefaultEndian(self):
+        """Test for default endian value='big'"""
+        self.assertEqual(conv_endian(954786), '0E 91 A2')
+
 
 if __name__ == '__main__':
     unittest.main()

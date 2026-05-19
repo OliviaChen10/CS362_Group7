@@ -18,15 +18,15 @@ def conv_endian(num, endian='big'):
                       10: 'A', 11: 'B', 12: 'C', 13: 'D',
                       14: 'E', 15: 'F'}
 
-    # Invalid endian
+    # invalid endian
     if endian not in ('big', 'little'):
         return None
 
-    # Keep track of negative num
+    # keep track of negative num
     negative = num < 0
     num = abs(num)
 
-    # Check for 0
+    # check for 0
     if num == 0:
         return '00'
 
