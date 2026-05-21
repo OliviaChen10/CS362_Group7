@@ -3,7 +3,7 @@ def conv_num(num_str):
     # string must not be empty
     if not isinstance(num_str, str) or len(num_str) == 0:
         return None
-    # Handle negative sign 
+    # Handle negative sign
     negative = False
     s = num_str
     if s[0] == '-':
@@ -21,7 +21,8 @@ def conv_num(num_str):
             return None
         return -result if negative else result
     # Handle decimal int/float
-    return _parse_decimal(s,negative)
+    return _parse_decimal(s, negative)
+
 
 def my_datetime(num_sec):
     pass
@@ -86,7 +87,7 @@ def conv_endian(num, endian='big'):
 
 # Helper functions for conv_num()
 def _parse_hex(hex_str):
-    """Helper fucntion to parse a hex string (no prefix) 
+    """Helper fucntion to parse a hex string (no prefix)
     and then return an int, or None if it is invalid"""
     hex_map = {
         '0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
@@ -100,6 +101,8 @@ def _parse_hex(hex_str):
             return None
         result = result * 16 + hex_map[char]
     return result
+
+
 def _parse_decimal(s, negative):
     """Parse a decimal integer or float string, return num or None"""
     dig_map = {
@@ -110,12 +113,12 @@ def _parse_decimal(s, negative):
     for i, char in enumerate(s):
         if char == '.':
             if dot_index is not None:
-                return None # multiple decimal points
+                return None  # multiple decimal points
             dot_index = i
-        elif char not in dig_map: 
-                return None # INvalid
+        elif char not in dig_map:
+            return None  # INvalid
     if len(s) == 0 or s == '.':
-        return None # empty
+        return None  # empty
     if dot_index is None:
         result = 0
         for char in s:
@@ -135,4 +138,4 @@ def _parse_decimal(s, negative):
             frac_val = frac_val * 10 + dig_map[char]
         divisor = 10 ** frac_len if frac_len > 0 else 1
         result = int_val + frac_val / divisor
-        return -result if negative else result 
+        return -result if negative else result
