@@ -108,7 +108,7 @@ class TestCase(unittest.TestCase):
     def test_start_year(self):
         """Tests that the starting date is correct."""
         self.assertEqual(my_datetime(0), "01-01-1970")
-                    
+
     def test_hex_upper(self):
         """Test that hex in upper case will return correct val"""
         self.assertEqual(conv_num('0xAD4'), 2772)
