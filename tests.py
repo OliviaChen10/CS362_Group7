@@ -1,5 +1,5 @@
 import unittest
-from task import conv_endian, conv_num
+from task import conv_endian, my_datetime, conv_num
 
 
 class TestCase(unittest.TestCase):
@@ -49,6 +49,66 @@ class TestCase(unittest.TestCase):
         """Tests that decimal with trailing dec will return correct float"""
         self.assertEqual(conv_num('123.'), 123.0)
 
+    def test_large_time(self):
+        """Tests for a large datetime."""
+        self.assertEqual(my_datetime(98765432100), "07-11-5273")
+
+    def test_future_time(self):
+        """Tests for a time far in the future."""
+        self.assertEqual(my_datetime(30000000000000), "03-03-962049")
+
+    def test_month_upper(self):
+        """Tests for the ending of the month."""
+        self.assertEqual(my_datetime(86400 * 30), "01-31-1970")
+
+    def test_month_lower(self):
+        """Tests for the beginning of the month."""
+        self.assertEqual(my_datetime(86400 * 31), "02-01-1970")
+
+    def test_new_year(self):
+        """Tests that the New Year's Day will return the correct value."""
+        self.assertEqual(my_datetime(86400 * 365), "01-01-1971")
+
+    def test_last_day(self):
+        """Tests that the last day of the year will return the correct value."""
+        self.assertEqual(my_datetime(86400 * 364), "12-31-1970")
+
+    def test_last_30day(self):
+        """Tests that the last day of a month with 30 days will return the correct value."""
+        self.assertEqual(my_datetime(86400 * 180), "06-30-1970")
+
+    def test_last_31day(self):
+        """Tests that the last day of a month with 31 days will return the correct value."""
+        self.assertEqual(my_datetime(86400 * 150), "05-31-1970")
+
+    def test_leap_year(self):
+        """Tests that the boundary for leap year is correct."""
+        self.assertEqual(my_datetime(86400 * 59), "02-29-1972")
+
+    def test_dayafter_leap(self):
+        """Tests that the day after leap year will return the correct value."""
+        self.assertEqual(my_datetime(86400 * 60), "03-01-1972")
+
+    def test_leapyear_boundary(self):
+        """Tests that the leap year boundary will return the correct value."""
+        self.assertEqual(my_datetime(86400 * 58), "02-28-1972")
+
+    def test_leap_century400(self):
+        """Tests that a year divisible by 400 is a leap year."""
+        self.assertEqual(my_datetime(951782400), "02-29-2000")
+
+    def test_leap_century(self):
+        """Tests that a year not divisible by 400 is not a leap year."""
+        self.assertEqual(my_datetime(86400 * 59 + 0), "03-01-1900")
+
+    def test_date_time(self):
+        """Tests that the date time will return correctly.""" 
+        self.assertEqual(my_datetime(2578960), "01-30-1970")
+
+    def test_start_year(self):
+        """Tests that the starting date is correct."""
+        self.assertEqual(my_datetime(0), "01-01-1970")
+                         
     def test_hex_upper(self):
         """Test that hex in upper case will return correct val"""
         self.assertEqual(conv_num('0xAD4'), 2772)
