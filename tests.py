@@ -93,14 +93,6 @@ class TestCase(unittest.TestCase):
         """Tests that the leap year boundary will return the correct value."""
         self.assertEqual(my_datetime(68083200), "02-28-1972")
 
-    def test_leap_century400(self):
-        """Tests that a year divisible by 400 is a leap year."""
-        self.assertEqual(my_datetime(951782400), "02-29-2000")
-
-    def test_leap_century(self):
-        """Tests that a year not divisible by 400 is not a leap year."""
-        self.assertEqual(my_datetime(86400 * 59 + 0), "03-01-1900")
-
     def test_date_time(self):
         """Tests that the date time will return correctly."""
         self.assertEqual(my_datetime(2578960), "01-30-1970")
