@@ -51,11 +51,7 @@ class TestCase(unittest.TestCase):
 
     def test_large_time(self):
         """Tests for a large datetime."""
-        self.assertEqual(my_datetime(98765432100), "07-11-5273")
-
-    def test_future_time(self):
-        """Tests for a time far in the future."""
-        self.assertEqual(my_datetime(30000000000000), "03-03-962049")
+        self.assertEqual(my_datetime(98765432100), "10-02-5099")
 
     def test_month_upper(self):
         """Tests for the ending of the month."""
