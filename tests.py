@@ -83,15 +83,15 @@ class TestCase(unittest.TestCase):
 
     def test_leap_year(self):
         """Tests that the boundary for leap year is correct."""
-        self.assertEqual(my_datetime(86400 * 59), "02-29-1972")
+        self.assertEqual(my_datetime(68169600), "02-29-1972")
 
     def test_dayafter_leap(self):
         """Tests that the day after leap year will return the correct value."""
-        self.assertEqual(my_datetime(86400 * 60), "03-01-1972")
+        self.assertEqual(my_datetime(68256000), "03-01-1972")
 
     def test_leapyear_boundary(self):
         """Tests that the leap year boundary will return the correct value."""
-        self.assertEqual(my_datetime(86400 * 58), "02-28-1972")
+        self.assertEqual(my_datetime(68083200), "02-28-1972")
 
     def test_leap_century400(self):
         """Tests that a year divisible by 400 is a leap year."""
