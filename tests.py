@@ -102,13 +102,13 @@ class TestCase(unittest.TestCase):
         self.assertEqual(my_datetime(86400 * 59 + 0), "03-01-1900")
 
     def test_date_time(self):
-        """Tests that the date time will return correctly.""" 
+        """Tests that the date time will return correctly."""
         self.assertEqual(my_datetime(2578960), "01-30-1970")
 
     def test_start_year(self):
         """Tests that the starting date is correct."""
         self.assertEqual(my_datetime(0), "01-01-1970")
-                         
+                    
     def test_hex_upper(self):
         """Test that hex in upper case will return correct val"""
         self.assertEqual(conv_num('0xAD4'), 2772)
