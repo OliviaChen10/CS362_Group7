@@ -4,34 +4,49 @@ from task import conv_endian, my_datetime, conv_num
 
 class TestCase(unittest.TestCase):
 
-    # Unit Tests for conv_endian()
-    def test_invalidEndian(self):
+    def test_invalid_endian(self):
         """Test for an invalid endian input"""
         self.assertEqual(conv_endian(4, 'lit'), None)
 
-    def test_ConvertZero(self):
-        """Test for 0 as input"""
+    def test_zero_bigE(self):
+        """Test for 0 as input for big endian"""
         self.assertEqual(conv_endian(0, 'big'), '00')
 
-    def test_ValidBigE(self):
+    def test_zero_littleE(self):
+        """Test for 0 as an input for little endian"""
+        self.assertEqual(conv_endian(0, 'little'), '00')
+
+    def test_zero_default_endian(self):
+        """Test for 0 with the default endian value"""
+        self.assertEqual(conv_endian(0), '00')
+
+    def test_valid_bigE(self):
         """Test for a valid big endian input"""
         self.assertEqual(conv_endian(954786, 'big'), '0E 91 A2')
 
-    def test_ValidLittleE(self):
+    def test_valid_littleE(self):
         """Test for a valid little endian input"""
         self.assertEqual(conv_endian(954786, 'little'), 'A2 91 0E')
 
-    def test_ValidNegBigE(self):
+    def test_valid_neg_bigE(self):
         """Test for a valid negative big endian input"""
         self.assertEqual(conv_endian(-954786, 'big'), '-0E 91 A2')
 
-    def test_ValidNegLittleE(self):
+    def test_valid_neg_littleE(self):
         """Test for a valid negative little endian input"""
         self.assertEqual(conv_endian(-954786, 'little'), '-A2 91 0E')
 
-    def test_DefaultEndian(self):
+    def test_default_endian(self):
         """Test for default endian value='big'"""
         self.assertEqual(conv_endian(954786), '0E 91 A2')
+
+    def test_large_number_bigE(self):
+        """Test to convert a large number to hex (big E)"""
+        self.assertEqual(conv_endian(784653299378, 'big'), 'B6 B0 FB 2E B2')
+
+    def test_large_number_littleE(self):
+        """Test to convert a large number to hex (little E)"""
+        self.assertEqual(conv_endian(784653299378, 'little'), 'B2 2E FB B0 B6')
 
     def test_integer(self):
         """Test that string integer returns correct val"""
